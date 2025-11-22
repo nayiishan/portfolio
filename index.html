@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ishan Nayi | Visual Identity & UI</title>
+    <meta name="description" content="Portfolio of a Creative Graphic Designer">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#d4ff00', // Neon Lime
+                        dark: '#0a0a0a',
+                        surface: '#121212',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4ff00;
+        }
+
+        /* Text Outline Effect */
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+            color: transparent;
+        }
+        .text-outline:hover {
+            -webkit-text-stroke: 1px #d4ff00;
+            color: transparent;
+        }
+
+        /* Hover Reveal Image */
+        .portfolio-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Prevent iOS zoom on inputs */
+        input, select, textarea {
+            font-size: 16px !important;
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-200 font-sans selection:bg-accent selection:text-black overflow-x-hidden">
+
+    <!-- Floating Social Bar (Desktop Only) -->
+    <div class="hidden lg:flex fixed left-8 bottom-0 flex-col gap-6 items-center z-50 after:content-[''] after:h-24 after:w-[1px] after:bg-gray-700">
+        <a href="https://www.behance.net/ishannayi" target="_blank" class="text-gray-400 hover:text-accent hover:-translate-y-1 transition duration-300 text-xl"><i class="fa-brands fa-behance"></i></a>
+        <a href="#" class="text-gray-400 hover:text-accent hover:-translate-y-1 transition duration-300 text-xl"><i class="fa-brands fa-dribbble"></i></a>
+        <a href="https://www.instagram.com/ishan.graphic/" target="_blank" class="text-gray-400 hover:text-accent hover:-translate-y-1 transition duration-300 text-xl"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/ishan-nayi-2a2a0819a/" target="_blank" class="text-gray-400 hover:text-accent hover:-translate-y-1 transition duration-300 text-xl"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+
+    <!-- Header -->
+    <nav class="fixed w-full top-0 z-40 bg-dark/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl md:text-2xl font-display font-bold text-white tracking-tighter z-50 relative">
+                ISHAN<span class="text-accent">.</span>GRAPHIC
+            </a>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#work" class="text-sm uppercase tracking-widest hover:text-accent transition">Work</a>
+                <a href="#about" class="text-sm uppercase tracking-widest hover:text-accent transition">About</a>
+                <a href="#contact" class="px-6 py-2 border border-white/20 rounded-full hover:bg-accent hover:text-black hover:border-accent transition duration-300 text-sm font-bold uppercase">
+                    Let's Talk
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-2xl text-white z-50 relative p-2 focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 md:hidden">
+        <a href="#work" class="text-4xl font-display font-bold hover:text-accent transition mobile-link">Work</a>
+        <a href="#about" class="text-4xl font-display font-bold hover:text-accent transition mobile-link">About</a>
+        <a href="#contact" class="text-4xl font-display font-bold hover:text-accent transition mobile-link">Contact</a>
+        <div class="flex gap-8 mt-8 border-t border-gray-800 pt-8">
+            <a href="https://www.behance.net/ishannayi" target="_blank" class="text-3xl text-white hover:text-accent"><i class="fa-brands fa-behance"></i></a>
+            <a href="https://www.instagram.com/ishan.graphic/" target="_blank" class="text-3xl text-white hover:text-accent"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ishan-nayi-2a2a0819a/" target="_blank" class="text-3xl text-white hover:text-accent"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center relative overflow-hidden pt-24 pb-12 md:pt-20 md:pb-0">
+        <!-- Background Abstract Element -->
+        <div class="absolute top-1/4 right-[-20%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-accent/10 blur-[60px] md:blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-[-20%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] rounded-full bg-purple-900/20 blur-[60px] md:blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full">
+            <div class="z-10 mt-8 md:mt-0">
+                <h2 class="text-accent font-medium tracking-[0.2em] mb-4 uppercase text-xs md:text-sm animate-pulse">Graphic Designer & Art Director</h2>
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-display font-extrabold leading-[0.9] mb-6 md:mb-8 text-white break-words">
+                    VISUAL <br>
+                    <span class="text-outline transition-all duration-500">ALCHEMY</span>
+                </h1>
+                <p class="text-gray-400 text-base md:text-lg max-w-md mb-8 md:mb-10 leading-relaxed">
+                    I transform abstract concepts into bold, memorable visual identities. Specializing in branding, editorial design, and digital experiences.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#work" class="bg-accent text-black px-8 py-4 rounded-full font-bold hover:bg-white transition duration-300 flex items-center justify-center gap-2 text-center">
+                        View Portfolio <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 rounded-full border border-white/20 hover:border-accent hover:text-accent transition duration-300 text-center">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Graphic / 3D Element Placeholder -->
+            <div class="relative hidden lg:flex justify-center items-center">
+                <div class="relative w-80 h-80 md:w-96 md:h-96">
+                    <!-- Rotating Circle Text -->
+                    <div class="absolute inset-0 animate-spin-slow">
+                        <svg viewBox="0 0 100 100" width="100%" height="100%">
+                            <defs>
+                                <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+                            </defs>
+                            <text font-size="10" fill="#fff" font-family="Space Grotesk" letter-spacing="3" font-weight="bold">
+                                <textPath xlink:href="#circle">
+                                    UI/UX • BRANDING • PRINT • DIGITAL • 
+                                </textPath>
+                            </text>
+                        </svg>
+                    </div>
+                    <!-- Center Image -->
+                    <div class="absolute inset-4 rounded-full overflow-hidden border-2 border-white/10">
+                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Abstract Art" class="w-full h-full object-cover opacity-80">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 animate-bounce">
+            <span class="text-xs uppercase tracking-widest">Scroll</span>
+            <i class="fa-solid fa-arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- Skills Marquee -->
+    <div class="py-6 md:py-8 bg-accent text-black overflow-hidden rotate-1 md:-rotate-1 scale-105 border-y-4 border-black">
+        <div class="flex whitespace-nowrap w-max animate-marquee">
+            <!-- Doubled content for seamless loop -->
+            <div class="flex gap-8 md:gap-12 px-4 md:px-6">
+                <span class="text-2xl md:text-3xl font-display font-bold">PHOTOSHOP</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">ILLUSTRATOR</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">FIGMA</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">INDESIGN</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">CINEMA 4D</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">BRANDING</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+            </div>
+            <div class="flex gap-8 md:gap-12 px-4 md:px-6">
+                <span class="text-2xl md:text-3xl font-display font-bold">PHOTOSHOP</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">ILLUSTRATOR</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">FIGMA</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">INDESIGN</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">CINEMA 4D</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+                <span class="text-2xl md:text-3xl font-display font-bold">BRANDING</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-black/30">•</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selected Works -->
+    <section id="work" class="py-16 md:py-32 bg-surface relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-2">Selected Works</h2>
+                    <div class="h-1 w-20 bg-accent"></div>
+                </div>
+                <a href="https://www.behance.net/ishannayi" target="_blank" class="hidden md:block text-gray-400 hover:text-white transition">View All Projects <i class="fa-solid fa-arrow-right ml-2"></i></a>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Project 1: Logo Design -->
+                <a href="https://www.behance.net/gallery/182261975/RESTAURANT-BRANDING-FOR-SARANDA-FAFE-PIZZERIA" target="_blank" class="portfolio-item group relative overflow-hidden rounded-xl cursor-pointer bg-dark aspect-[4/3] block shadow-lg">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/3290b1182261975.652a7a4e29c19.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1626785774573-4b79931433da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" 
+                         alt="Restaurant Branding - Saranda Fafe" class="w-full h-full object-cover">
+                    <div class="overlay absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                        <span class="text-accent text-sm uppercase tracking-widest mb-2">Identity</span>
+                        <h3 class="text-2xl font-display font-bold text-white">Saranda Fafe Pizzeria</h3>
+                    </div>
+                    <div class="absolute bottom-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                        <i class="fa-solid fa-arrow-up-right"></i>
+                    </div>
+                </a>
+
+                <!-- Project 2: Social Media (Adjusted for Mobile) -->
+                <a href="https://www.behance.net/ishannayi" target="_blank" class="portfolio-item group relative overflow-hidden rounded-xl cursor-pointer bg-dark md:row-span-2 aspect-square md:aspect-auto block shadow-lg">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/996830216093417.677a9186df31a.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" 
+                         alt="Social Media Design" class="w-full h-full object-cover">
+                    <div class="overlay absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                        <span class="text-accent text-sm uppercase tracking-widest mb-2">Social Media</span>
+                        <h3 class="text-2xl font-display font-bold text-white">Instagram Content Kit</h3>
+                    </div>
+                    <div class="absolute bottom-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                        <i class="fa-solid fa-arrow-up-right"></i>
+                    </div>
+                </a>
+
+                <!-- Project 3: Flyer/Print -->
+                <a href="https://www.behance.net/ishannayi" target="_blank" class="portfolio-item group relative overflow-hidden rounded-xl cursor-pointer bg-dark aspect-[4/3] block shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Flyer Design" class="w-full h-full object-cover">
+                    <div class="overlay absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                        <span class="text-accent text-sm uppercase tracking-widest mb-2">Print Media</span>
+                        <h3 class="text-2xl font-display font-bold text-white">Event Flyer Design</h3>
+                    </div>
+                     <div class="absolute bottom-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                        <i class="fa-solid fa-arrow-up-right"></i>
+                    </div>
+                </a>
+
+                <!-- Project 4: Packaging -->
+                <a href="https://www.behance.net/ishannayi" target="_blank" class="portfolio-item group relative overflow-hidden rounded-xl cursor-pointer bg-dark aspect-video md:aspect-[16/9] md:col-span-2 block shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1541462608143-0af7f58f862e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Packaging Design" class="w-full h-full object-cover">
+                    <div class="overlay absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                        <span class="text-accent text-sm uppercase tracking-widest mb-2">Product Design</span>
+                        <h3 class="text-2xl font-display font-bold text-white">Product Packaging</h3>
+                    </div>
+                     <div class="absolute bottom-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                        <i class="fa-solid fa-arrow-up-right"></i>
+                    </div>
+                </a>
+
+            </div>
+             <div class="mt-12 text-center md:hidden">
+                 <a href="https://www.behance.net/ishannayi" target="_blank" class="inline-block bg-white/10 px-8 py-3 rounded-full text-white font-bold hover:bg-white hover:text-black transition">View All Projects</a>
+             </div>
+        </div>
+    </section>
+
+    <!-- Services / About -->
+    <section id="about" class="py-16 md:py-24 bg-dark text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">Design is not just what it looks like, but how it <span class="text-accent">works</span>.</h2>
+                    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-8">
+                        Hi, I'm Ishan. With over 5 years of experience in the design industry, I help brands tell their stories through compelling visuals. I believe in minimalism, bold typography, and pixel-perfect execution.
+                    </p>
+                    
+                    <!-- Experience Stats -->
+                    <div class="grid grid-cols-3 gap-4 md:gap-6 border-t border-white/10 pt-8">
+                        <div class="text-center md:text-left">
+                            <span class="block text-2xl md:text-3xl font-bold text-white">5+</span>
+                            <span class="text-[10px] md:text-sm text-gray-500 uppercase tracking-wider">Years Exp.</span>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <span class="block text-2xl md:text-3xl font-bold text-white">80+</span>
+                            <span class="text-[10px] md:text-sm text-gray-500 uppercase tracking-wider">Projects</span>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <span class="block text-2xl md:text-3xl font-bold text-white">100%</span>
+                            <span class="text-[10px] md:text-sm text-gray-500 uppercase tracking-wider">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 md:space-y-8">
+                    <!-- Service Item -->
+                    <div class="group p-6 border border-white/10 rounded-xl hover:bg-white/5 hover:border-accent/50 transition duration-300">
+                        <div class="flex justify-between items-center mb-3 md:mb-4">
+                            <h3 class="text-lg md:text-xl font-bold">Brand Identity</h3>
+                            <i class="fa-solid fa-fingerprint text-accent text-xl md:text-2xl"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm">Logo design, style guides, and complete visual language development.</p>
+                    </div>
+
+                    <!-- Service Item -->
+                    <div class="group p-6 border border-white/10 rounded-xl hover:bg-white/5 hover:border-accent/50 transition duration-300">
+                        <div class="flex justify-between items-center mb-3 md:mb-4">
+                            <h3 class="text-lg md:text-xl font-bold">UI/UX Design</h3>
+                            <i class="fa-solid fa-laptop-code text-accent text-xl md:text-2xl"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm">Creating intuitive and aesthetically pleasing digital interfaces.</p>
+                    </div>
+
+                    <!-- Service Item -->
+                    <div class="group p-6 border border-white/10 rounded-xl hover:bg-white/5 hover:border-accent/50 transition duration-300">
+                        <div class="flex justify-between items-center mb-3 md:mb-4">
+                            <h3 class="text-lg md:text-xl font-bold">Print & Editorial</h3>
+                            <i class="fa-solid fa-book-open text-accent text-xl md:text-2xl"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm">Magazines, posters, business cards, and merchandise design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Grid -->
+    <section class="py-16 md:py-20 bg-surface border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-display font-bold mb-8 md:mb-12">Connect on Social</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="https://www.behance.net/ishannayi" target="_blank" class="p-6 md:p-8 bg-dark rounded-lg hover:bg-[#1769ff] hover:text-white transition duration-300 group">
+                    <i class="fa-brands fa-behance text-2xl md:text-3xl mb-2 group-hover:scale-110 transition"></i>
+                    <p class="font-bold text-sm md:text-base">Behance</p>
+                    <span class="text-xs opacity-60">Portfolio</span>
+                </a>
+                <a href="#" class="p-6 md:p-8 bg-dark rounded-lg hover:bg-[#ea4c89] hover:text-white transition duration-300 group">
+                    <i class="fa-brands fa-dribbble text-2xl md:text-3xl mb-2 group-hover:scale-110 transition"></i>
+                    <p class="font-bold text-sm md:text-base">Dribbble</p>
+                    <span class="text-xs opacity-60">Shots</span>
+                </a>
+                <a href="https://www.instagram.com/ishan.graphic/" target="_blank" class="p-6 md:p-8 bg-dark rounded-lg hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 hover:text-white transition duration-300 group">
+                    <i class="fa-brands fa-instagram text-2xl md:text-3xl mb-2 group-hover:scale-110 transition"></i>
+                    <p class="font-bold text-sm md:text-base">Instagram</p>
+                    <span class="text-xs opacity-60">Daily Life</span>
+                </a>
+                 <a href="https://www.linkedin.com/in/ishan-nayi-2a2a0819a/" target="_blank" class="p-6 md:p-8 bg-dark rounded-lg hover:bg-[#0077b5] hover:text-white transition duration-300 group">
+                    <i class="fa-brands fa-linkedin-in text-2xl md:text-3xl mb-2 group-hover:scale-110 transition"></i>
+                    <p class="font-bold text-sm md:text-base">LinkedIn</p>
+                    <span class="text-xs opacity-60">Professional</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-4xl md:text-7xl font-display font-bold mb-4 md:mb-6 leading-tight">Let's work together</h2>
+                <p class="text-base md:text-xl text-gray-400">Have a project in mind? Send me a message.</p>
+            </div>
+
+            <form class="space-y-6" onsubmit="event.preventDefault(); alert('Message Sent!');">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-xs md:text-sm uppercase tracking-widest text-gray-500">Name</label>
+                        <input type="text" class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-accent transition text-base md:text-lg" placeholder="John Doe">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs md:text-sm uppercase tracking-widest text-gray-500">Email</label>
+                        <input type="email" class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-accent transition text-base md:text-lg" placeholder="john@example.com">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs md:text-sm uppercase tracking-widest text-gray-500">Project Type</label>
+                    <select class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-accent transition text-base md:text-lg">
+                        <option class="bg-dark">Branding</option>
+                        <option class="bg-dark">Web Design</option>
+                        <option class="bg-dark">Illustration</option>
+                        <option class="bg-dark">Other</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs md:text-sm uppercase tracking-widest text-gray-500">Message</label>
+                    <textarea rows="4" class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-accent transition text-base md:text-lg resize-none" placeholder="Tell me about your project..."></textarea>
+                </div>
+                
+                <div class="pt-8 text-center">
+                    <button class="w-full md:w-auto bg-white text-black px-12 py-4 rounded-full font-bold text-lg hover:bg-accent transition duration-300 transform hover:scale-105">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Contact BG decorative text -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none">
+             <h2 class="text-[15vw] font-display font-bold whitespace-nowrap leading-none text-center select-none">GET IN TOUCH</h2>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/10 bg-dark text-center px-6">
+        <p class="text-gray-500 text-sm">&copy; 2023 Ishan Graphic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            const icon = menuBtn.querySelector('i');
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                icon.classList.remove('fa-bars-staggered');
+                icon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = ''; // Restore scrolling
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars-staggered');
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>
