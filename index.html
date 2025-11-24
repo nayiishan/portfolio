@@ -183,24 +183,39 @@
             </div>
             
             <!-- Hero Graphic / 3D Element Placeholder -->
-            <div class="relative hidden lg:flex justify-center items-center">
-                <div class="relative w-80 h-80 md:w-96 md:h-96">
-                    <!-- Rotating Circle Text -->
-                    <div class="absolute inset-0 animate-spin-slow">
+            <!-- ADJUST POSITION HERE: Change translate(0px, 0px) to move. First value is X (Horizontal), second is Y (Vertical). -->
+            <div class="relative hidden lg:flex justify-center items-center" style="transform: translate(0px, 0px);">
+                <div class="relative w-80 h-80 md:w-96 md:h-96 flex justify-center items-end">
+                    
+                    <!-- 1. Background Circle Image -->
+                    <div class="absolute inset-0 rounded-full overflow-hidden border-2 border-white/10 z-0 bg-dark">
+                        <img src="https://raw.githubusercontent.com/nayiishan/portfolio/ad740f9cc388455ad36c17453754853bd784f102/Circle.png" 
+                             alt="Background Circle" 
+                             class="w-full h-full object-cover opacity-80">
+                    </div>
+
+                    <!-- 2. Rotating Circle Text (Runs behind the cutout) -->
+                    <!-- Removed scale-110 so size matches the neon circle exactly -->
+                    <div class="absolute inset-0 animate-spin-slow z-10 flex items-center justify-center">
                         <svg viewBox="0 0 100 100" width="100%" height="100%">
                             <defs>
-                                <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+                                <!-- Increased radius from 36 to 40 to make it bigger -->
+                                <path id="hero-text-circle" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
                             </defs>
-                            <text font-size="10" fill="#fff" font-family="Space Grotesk" letter-spacing="3" font-weight="bold">
-                                <textPath xlink:href="#circle">
-                                    BRANDING • PRINT • DIGITAL • BRANDING • PRINT • DIGITAL • 
+                            <!-- Font size adjusted to 5.5 for inside fit -->
+                            <text font-size="5.5" fill="#fff" font-family="Space Grotesk" letter-spacing="2.5" font-weight="bold">
+                                <textPath href="#hero-text-circle" startOffset="0%">
+                                    BRANDING • PRINTING • SOCIAL MEDIA ADVT • MOTION GRAPHICS • 
                                 </textPath>
                             </text>
                         </svg>
                     </div>
-                    <!-- Center Image -->
-                    <div class="absolute inset-4 rounded-full overflow-hidden border-2 border-white/10">
-                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Abstract Art" class="w-full h-full object-cover opacity-80">
+
+                    <!-- 3. Cutout Image (Front Layer) -->
+                    <div class="absolute bottom-0 h-[115%] z-20 pointer-events-none w-full flex justify-center">
+                        <img src="https://raw.githubusercontent.com/nayiishan/portfolio/ad740f9cc388455ad36c17453754853bd784f102/cutout.png" 
+                             class="h-full object-contain object-bottom drop-shadow-2xl" 
+                             alt="Ishan Nayi">
                     </div>
                 </div>
             </div>
