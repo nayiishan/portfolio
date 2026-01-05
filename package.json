@@ -1,0 +1,22 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio of a Creative Graphic Designer",
+  "type": "module",
+  "scripts": {
+    "dev": "http-server",
+    "build": "echo 'Static site, no build needed'",
+    "start": "http-server"
+  },
+  "dependencies": {
+    "@vercel/analytics": "latest"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "portfolio",
+    "graphic-design",
+    "visual-identity"
+  ],
+  "author": "Ishan Nayi",
+  "license": "MIT"
+}
